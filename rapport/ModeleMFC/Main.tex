@@ -1,0 +1,68 @@
+\documentclass[twoside,12pt]{report}
+
+%------------------------------Zone 1-------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}% juste utile ici pour générer du faux texte}
+\usepackage{amsmath,amsfonts,amssymb}%extensions de l'ams pour les mathématiques
+\usepackage{graphicx}%pour insérer images et pdf entre autres
+\usepackage[left=3.5cm,right=2cm,top=2cm,bottom=2.5cm]{geometry}%réglages des marges du document selon vos préférences ou celles de votre établissement
+\usepackage{listings}%pour insérer du code source
+\usepackage{hyperref}%rend actif les liens, références croisées, toc…
+\usepackage{fullpage}
+\usepackage{eso-pic}
+\usepackage[francais]{babel} % un troisi�me package pour dire � <em>Latex</em> que vous �crivez en fran�ais.
+\usepackage{fancyhdr}
+
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\newcommand{\blap}[1]{\vbox to 0pt{#1\vss}}
+\newcommand\AtUpperLeftCorner[3]{%
+  \put(\LenToUnit{#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{#3}}%
+}
+\newcommand\AtUpperRightCorner[3]{%
+  \put(\LenToUnit{\dimexpr\paperwidth-#1},\LenToUnit{\dimexpr\paperheight-#2}){\blap{\llap{#3}}}%
+}
+
+%------------------------------Fin Zone 1---------------------------
+
+\begin{document}
+
+%------------------------------Zone 2: d�but des page non num�rot�es-------------------------
+
+\input{PageDeGarde/PageDeGarde.tex}
+
+
+%------------------------------Fin Zone 2: fin des page non num�rot�es---------------------------
+
+%------------------------------Zone 3:d�but ent�tes et prieds de page-----------------------------------------
+
+
+
+%------------------------------Fin Zone 3: fin des ent�tes et prieds de page-------------------------------------------
+
+%-----------------Zone 4: d�but de la num�rotation avec les chiffres romains-----------------
+
+\tableofcontents
+
+
+
+%-----------------Fin Zone 4: fin de la num�rotation avec les chiffres romains-------------------
+
+%-----------------Zone 5: d�but de la num�rotation avec les chiffres arabs-------------------
+
+\input{IntroductionGenerale/IntroductionGenerale}
+
+\pagenumbering{arabic}% num�rotation avec les chiffres arabe
+\setcounter{page}{1} % d�but de la num�rotation est 1.
+
+\input{Chapitre1/Chapitre1}
+\input{Chapitre2/Chapitre2}
+\input{Chapitre3/Chapitre3}
+\input{ConclusionGenerale/ConclusionGenerale}
+\input{Annexe/Annexe}
+\input{Bibliographie/Bibliographie}
+
+%-----------------Fin Zone 5: fin de la num�rotation avec les chiffres arabs---------------------
+
+\end {document}

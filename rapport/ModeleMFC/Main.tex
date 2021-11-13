@@ -1,4 +1,4 @@
-\documentclass[twoside,12pt]{report}
+\documentclass[twoside,11pt]{report}
 
 %------------------------------Zone 1-------------------------
 \usepackage[utf8]{inputenc}
@@ -45,6 +45,8 @@
 %-----------------Zone 4: d�but de la num�rotation avec les chiffres romains-----------------
 
 \tableofcontents
+\pagenumbering{roman}%numérotation avec les chiffres romains
+\setcounter{page}{1} %début de la numérotation est 1.
 
 
 
@@ -60,9 +62,9 @@
 \input{Chapitre1/Chapitre1}
 \input{Chapitre2/Chapitre2}
 \input{Chapitre3/Chapitre3}
-\input{ConclusionGenerale/ConclusionGenerale}
+%\input{ConclusionGenerale/ConclusionGenerale}
 \input{Annexe/Annexe}
-\input{Bibliographie/Bibliographie}
+%\input{Bibliographie/Bibliographie}
 
 %-----------------Fin Zone 5: fin de la num�rotation avec les chiffres arabs---------------------
 

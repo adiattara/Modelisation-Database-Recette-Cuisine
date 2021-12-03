@@ -2,7 +2,9 @@
 
 \section{Le modèle entité association}
 Cette partie présente les différentes tables ainsi que les relations
-qui relient ces dernières. Après une analyse des différentes informations présente dans l'énoncé, voici le modèle entité association qui en découle. Pour des questions de lisibilités, vous pouvez aussi vous référer au dossier \texttt{images/RecetteDeCuisineJMerise.png}.
+qui relient ces dernières. Après une analyse des différentes informations présente dans l'énoncé, voici le modèle entité association qui en découle. Pour des questions de lisibilités, vous pouvez aussi vous référer au dossier:
+\newline 
+\texttt{images/RecetteDeCuisineJMerise.png}.
 
 \begin{figure}
     \includegraphics[scale=0.3]{images/RecetteDeCuisineJMerise.png}
@@ -243,9 +245,9 @@ En fonction des ingrédients qui lui manque, l'utilisateur pourra établir une l
 \newline
 Dans cette table, Il faudrait disposer aussi d'un champ (\texttt{quantite}) de type décimal indiquant la quantité de cet ingrédient que va acheter l'utilisateur ainsi qu'un champ (\texttt{date}) de type \texttt{datetime} indiquant la date d'âchat.
 \newline
-Une des contraintes que devra respecter le champ \textit{date} est que sa valeur dois être comprise entre l'instant \texttt{t} d'établissement de la liste d'âchat et les \texttt{n} prochains mois (\textit{n fixé par l'admin. Pour simplifier on supposera que n vaut 1}). 
+Une des \textbf{contraintes} (\textit{statique}) que devra respecter le champ \textit{date} est que sa valeur dois être comprise entre l'instant \texttt{t} d'établissement de la liste d'âchat et les \texttt{n} prochains mois (\textit{n fixé par l'admin. Pour simplifier on supposera que n vaut 1}). 
 \newline
-Si cette date est dépassée, la liste sera archivé c'est-à-dire conservé dans une autre table \texttt{Ingredients\_-
+L'autre \textbf{contrainte} (\textit{dynamique}) sera tel que, si cette date est dépassée, la liste sera archivé c'est-à-dire conservé dans une autre table \texttt{Ingredients\_-
 A\_Acheter\_Utilisateurs\_Archive}.
 
 

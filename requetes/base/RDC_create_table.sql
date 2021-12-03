@@ -264,7 +264,7 @@ alter table "Regimes_Utilisateurs"
                 references "Utilisateurs" ( "idUt" );
 
 alter table "Ingredients_A_Acheter_Utilisateurs_Archive"
-        add constraint "Ingrédients_A_Acheter_Utilisateurs_Archive_fk0" foreign key ( "idIngredient" )
+        add constraint "Ingredients_A_Acheter_Utilisateurs_Archive_fk0" foreign key ( "idIngredient" )
                 references "Ingredients" ( "idIngredient" );
 
 alter table "Ingredients_A_Acheter_Utilisateurs_Archive"

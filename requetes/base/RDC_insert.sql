@@ -1,6 +1,7 @@
-@rdc_create_seq.sql
+--@rdc_create_seq.sql
 -- insertion d'utilisateurs
 --u1
+
 insert into "Utilisateurs" (
         "idUt",
         "login",
@@ -881,7 +882,7 @@ insert into "Ingredients_Recettes" (
 ) values (
         1,
         9,
-        1
+        3
 );
 
 --ir1
@@ -892,7 +893,7 @@ insert into "Ingredients_Recettes" (
 ) values (
         1,
         11,
-        1
+        4
 );
 
 --ir1
@@ -914,7 +915,7 @@ insert into "Ingredients_Recettes" (
 ) values (
         1,
         6,
-        1
+        2
 );
 
 --ir2
@@ -1159,7 +1160,7 @@ insert into "Planning_Recettes_Utilisateurs" (
 ) values (
         1,
         2,
-        to_date('2021/11/11 10:00', 'YYYY/MM:DD HH24:MI')
+        to_date('2021/11/11 10:00', 'YYYY/MM/DD HH24:MI')
 );
 
 --p2
@@ -1170,7 +1171,7 @@ insert into "Planning_Recettes_Utilisateurs" (
 ) values (
         2,
         2,
-        to_date('2021/11/12 10:30', 'YYYY/MM:DD HH24:MI')
+        to_date('2021/11/12 10:30', 'YYYY/MM/DD HH24:MI')
 );
 
 --p3
@@ -1181,7 +1182,7 @@ insert into "Planning_Recettes_Utilisateurs" (
 ) values (
         1,
         1,
-        to_date('2021/11/11 22:30', 'YYYY/MM:DD HH24:MI')
+        to_date('2021/11/11 22:30', 'YYYY/MM/DD HH24:MI')
 );
 
 --p4
@@ -1192,5 +1193,5 @@ insert into "Planning_Recettes_Utilisateurs" (
 ) values (
         2,
         3,
-        to_date('2021/11/20 14:30', 'YYYY/MM:DD HH24:MI')
+        to_date('2021/11/20 14:30', 'YYYY/MM/DD HH24:MI')
 );

@@ -6,5 +6,5 @@ SELECT
 FROM
         user_constraints
 WHERE
-                table_name = 'Etapes'
-        AND constraint_type = 'C';
+                constraint_type = 'C'
+  AND table_name = 'Etapes';

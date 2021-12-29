@@ -68,4 +68,43 @@ end;
 
 -- Le nombre de calorie d’une recette est similaire à celui
 -- de la somme des calories de ses ingrédients (+/- 20%).
+create or replace trigger check_calories_similarity
+after insert or update on "Ingredients_Recettes"
+for each row
+declare
+v_nb_calorie_recette "Ingredients"."calories" % type ;
+v_nb_total_calorie_etapes "Ingredients"."calories" % type ;
+begin
+    
+    -- on calcul le nombre de calorie généré par chaque ingrédient 
+    -- associé à une recette en fonction de la quantité 
+    -- de l'ingrédient utilisée dans la recette. Puis on cumul 
+    -- l'ensemble des calories dans la recette
+    
+    select  sum(ig."calories" * ir."quantite") into v_nb_total_calorie_etapes
+    from    "Ingredients_Recettes" ir, "Ingredients" ig 
+    where   "idRecette" = :new."idRecette" 
+        and 
+            ir."idIngredient" = ig."idIngredient" ;
+    
+    
+    -- on récupère le nombre de calorie généré par les recettes
+    -- ce nombre est sencé être plus moins proche du nombre précédent
+    select  "calories" into v_nb_calorie_recette
+    from    "Recettes"
+    where   "idRecette" = :new."idRecette" ;
+    
+    -- vérification ...
+    if ((v_nb_calorie_recette < (0.8 * v_nb_total_calorie_etapes) or -- (-20%)
+        v_nb_calorie_recette > (1.2 * v_nb_total_calorie_etapes))  -- (+20%)
+        and 
+        (v_nb_total_calorie_etapes < (0.8 * v_nb_calorie_recette) or 
+        v_nb_total_calorie_etapes > (1.2 * v_nb_calorie_recette))) 
+    then
+        raise_application_error(-40400, 'Le nombre de calories d''une recette 
+        est similaire à celui de la somme des calories de ses ingrédients 
+        (+/- 20%)');
+    end if ;
+end ;
+/
 

@@ -1,4 +1,7 @@
+SET SERVEROUTPUT ON
 
+-- ne fonction qui change le nom d’un ingrédient par un autre 
+--  dans les étapes de réalisation d’une recette.
 create or replace function changer_nom_ingredient(
     id_ing_from "Ingredients"."idIngredient"%type,
     id_ing_to "Ingredients"."idIngredient"%type,
@@ -50,8 +53,7 @@ begin
 end;
 /
 
--- pour tester :
-BEGIN
-  dbms_output.put_line(changer_nom_ingredient(1, 1, 2));
-END;
+begin
+dbms_output.put_line(changer_nom_ingredient(1, 3, 2)) ;
+end;
 /

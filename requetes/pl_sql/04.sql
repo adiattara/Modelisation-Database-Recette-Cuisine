@@ -1,4 +1,6 @@
+SET SERVEROUTPUT ON
 -- 4.définir une fonction qui retourne un booléen si la recette est compatible avec un régime
+
 CREATE OR REPLACE FUNCTION test_recette_with_regime(
     recette_id IN "Recettes"."idRecette"%TYPE,
     regime_name IN "Regimes"."nomRegime"%TYPE

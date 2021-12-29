@@ -1,5 +1,8 @@
 SET SERVEROUTPUT ON
 
+-- ne procédure qui crée une copie de recette où certains ingrédients
+-- ont été remplacés par d’autres équivalents et où le nombre de 
+-- personnes peut-être différent de celui de la recette originale.
 create or replace procedure copier_recette
 (
     p_id_recette_a_dupliquer "Recettes"."idRecette"%type ,  -- recette à copier

@@ -1,5 +1,8 @@
 SET SERVEROUTPUT ON
 
+-- une fonction qui retourne la liste des ingrédients où la 
+-- quantité d’ingrédient a été adaptée pour un nombre de 
+-- personnes différent du nombre de personnes de la recette d’origine
 create or replace function adapter_quantite(
     p_id_recette IN "Recettes"."idRecette"%TYPE,
     p_nb_persones IN "Recettes"."nombreDePersonnes"%TYPE

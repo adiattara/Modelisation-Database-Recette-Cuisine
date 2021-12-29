@@ -66,8 +66,8 @@ end;
 /
 
 
--- Le nombre de calorie d’une recette est similaire à celui
--- de la somme des calories de ses ingrédients (+/- 20%).
+--      Le nombre de calorie d’une recette est similaire à celui
+--      de la somme des calories de ses ingrédients (+/- 20%).
 create or replace trigger check_calories_similarity
 after insert or update on "Ingredients_Recettes"
 for each row
@@ -108,3 +108,67 @@ begin
 end ;
 /
 
+
+ --         Les plannings de recettes et la liste des courses sont archivés 
+ --         lorsqu’ils sont supprimés ou une fois les dates associées dépassées.
+ -- ** Nous supposons un scheduler excécutera le code suivant périodiquement
+ 
+ -- ** Ce déclencheur provoque l'archivage d'une ligne planning lors d'une suppression
+ 
+create or replace trigger archive_plan_when_delete
+before delete on "Planning_Recettes_Utilisateurs"
+for each row
+declare 
+v_planning_line "Planning_Recettes_Utilisateurs" % rowtype;
+begin
+    select * into v_planning_line
+    from   "Planning_Recettes_Utilisateurs" pu
+    where pu."idRecette" = :old."idRecette" ;
+    
+    insert into "Planning_Recettes_Archive"
+    (
+        "idRecette",
+        "idUt",
+        "at"
+    ) 
+    values
+    (
+        v_planning_line."idRecette",
+        v_planning_line."idUt",
+        v_planning_line."at"
+    ) ;
+    
+end ;
+/
+
+ -- ** Ce déclencheur provoque l'archivage d'une liste achât lors d'une suppression
+create or replace trigger archive_bying_list_when_delete
+before delete on "Ingredients_A_Acheter_Utilisateurs"
+for each row
+declare 
+v_buying_line "Ingredients_A_Acheter_Utilisateurs" % rowtype;
+begin
+    select * into v_buying_line
+    from   "Ingredients_A_Acheter_Utilisateurs" pa
+    where pa."idIngredient" = :old."idIngredient" ;
+    
+    insert into "Ingredients_A_Acheter_Utilisateurs_Archive"
+    (
+        "idUt",
+        "idIngredient",
+        "quantite",
+        "date"
+    ) 
+    values
+    (
+        v_buying_line."idUt",
+        v_buying_line."idIngredient",
+        v_buying_line."quantite",
+        v_buying_line."date"
+    ) ;
+    
+end ;
+/
+ 
+ 
+ 

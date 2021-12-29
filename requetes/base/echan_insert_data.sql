@@ -58,9 +58,11 @@ insert into "Utilisateurs" (
 03000 MOULINS'
 );
 
--- insertion quelques unités
 
---ut1 id 2
+-- insertion quelques unités
+-- *************************
+
+-- Aucune
 insert into "Unites" (
         "idUnite",
         "nomUnite",
@@ -71,7 +73,7 @@ insert into "Unites" (
         null
 );
 
---ut2
+-- gramme
 insert into "Unites" (
         "idUnite",
         "nomUnite",
@@ -82,7 +84,9 @@ insert into "Unites" (
         'g'
 );
 
+
 -- insertion quelques régimes
+-- **************************
 
 insert into "Regimes" (
         "idRegime",
@@ -101,8 +105,9 @@ insert into "Regimes" (
 );
 
 -- insertion quelques ingrédients
+-- ******************************
 
---ing1
+-- eau : la vie !
 insert into "Ingredients" (
         "idIngredient",
         "nomIngredient",
@@ -120,10 +125,10 @@ insert into "Ingredients" (
         0,
         0,
         1,
-        1
+        1   -- Morneau
 );
 
---ing2
+-- Oeuf
 insert into "Ingredients" (
         "idIngredient",
         "nomIngredient",
@@ -141,12 +146,56 @@ insert into "Ingredients" (
         0.27,
         12.7,
         1,
-        2
+        2   -- Parrot
 );
 
--- insertion quelques cathegories permettant de regrouper les ingrédients
+-- thon
+insert into "Ingredients" (
+        "idIngredient",
+        "nomIngredient",
+        "calories",
+        "lipides",
+        "glucides",
+        "protides",
+        "idUnite",
+        "idUt"
+) values (
+        "INGREDIENTS_IDINGREDIENT_SEQ".nextval,
+        'Thon',
+        138,
+        9.03,
+        0.27,
+        10.7,
+        2,
+        1   -- Lucas
+);
 
---cat1 (Autres)
+-- tilapia
+insert into "Ingredients" (
+        "idIngredient",
+        "nomIngredient",
+        "calories",
+        "lipides",
+        "glucides",
+        "protides",
+        "idUnite",
+        "idUt"
+) values (
+        "INGREDIENTS_IDINGREDIENT_SEQ".nextval,
+        'Tilapia',
+        128,
+        5.03,
+        0.17,
+        8.7,
+        2,
+        3   -- Éléonore
+);
+
+
+-- insertion quelques cathegories permettant de regrouper les ingrédients
+-- **********************************************************************q
+
+-- Autre
 insert into "Categories" (
         "idCategorie",
         "nomCategorie"
@@ -155,7 +204,7 @@ insert into "Categories" (
         'Autre'
 );
 
---cat2 (Poisson)
+-- Poisson
 insert into "Categories" (
         "idCategorie",
         "nomCategorie"
@@ -164,7 +213,7 @@ insert into "Categories" (
         'Poisson'
 );
 
---cat3 (Légumes)
+-- Légumes
 insert into "Categories" (
         "idCategorie",
         "nomCategorie"
@@ -173,7 +222,9 @@ insert into "Categories" (
         'Légumes'
 );
 
--- insertion dans la table de jointure ingredients cathegories
+
+-- association des catégories à des ingrédients
+-- *******************************************
 
 --ic1
 insert into "Ingredients_Categories" (
@@ -181,7 +232,7 @@ insert into "Ingredients_Categories" (
         "idCategorie"
 ) values (
         1,
-        1
+        2
 );
 
 --ic2
@@ -190,10 +241,30 @@ insert into "Ingredients_Categories" (
         "idCategorie"
 ) values (
         2,
-        1
+        2
 );
 
--- insertion de quelques régimes des utilisateurs
+-- ic3
+insert into "Ingredients_Categories" (
+        "idIngredient",
+        "idCategorie"
+) values (
+        3,  -- thon
+        2   -- poisson
+);
+
+-- ic4
+insert into "Ingredients_Categories" (
+        "idIngredient",
+        "idCategorie"
+) values (
+        4,  -- tilapia
+        2   -- poisson
+);
+
+
+-- insertion de quelques régimes pour utilisateurs
+-- ***********************************************
 
 insert into "Regimes_Utilisateurs" (
         "idRegime",
@@ -223,7 +294,8 @@ values (
 );
 
 
--- insertion de ingrédients incompatible avec un régimes
+-- insertion de ingrédients incompatibles avec un régimes
+-- ******************************************************
 
 insert into "Ingredients_Incompatibles_Regimes" (
         "idRegime"    ,
@@ -305,8 +377,8 @@ insert into "Recettes" (
 );
 
 
-
---- insertion de quelques élément dans la table des ingrédient des recetttes
+-- associer quelques ingrédients des recettes
+-- ******************************************
 
 --ir1
 insert into "Ingredients_Recettes" (
@@ -320,7 +392,7 @@ insert into "Ingredients_Recettes" (
 );
 
 
---ir1
+--ir2
 insert into "Ingredients_Recettes" (
         "idRecette",
         "idIngredient",
@@ -328,6 +400,18 @@ insert into "Ingredients_Recettes" (
 ) values (
         1,
         1,
+        4
+);
+
+
+--ir2
+insert into "Ingredients_Recettes" (
+        "idRecette",
+        "idIngredient",
+        "quantite"
+) values (
+        1,  -- salades...thon
+        3,  -- thon
         4
 );
 
@@ -355,7 +439,8 @@ insert into "Ingredients_Recettes" (
 );
 
 
---- insertion de quelques recettes dans le planning de l'utilisateur
+-- insertion de quelques recettes dans le planning de l'utilisateur
+-- ****************************************************************
 
 --p1
 insert into "Planning_Recettes_Utilisateurs" (
